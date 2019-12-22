@@ -17,7 +17,7 @@ class Authors extends Migration
         // write the table name
 	Schema::create('authors',function(Blueprint $table){
 		// all the table column
-		$table->increments('id')->unsigned()->index();
+		$table->increments('id')->index();
 		$table->string('first_name');
 		$table->string('last_name');
 		$table->timestamps();
@@ -38,10 +38,14 @@ class Authors extends Migration
             });
 
 
+
+    
+
     Schema::table('books',function(Blueprint $table){
         $table->foreign('author_id')->references('id')->on('authors')->onDelete('cascade');
     });
 
+   
     }
 
     /**

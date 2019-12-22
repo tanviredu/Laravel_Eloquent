@@ -16,5 +16,8 @@ to create the database we will give this command
 
     if you want to add relation with foreign key 
     you have to add a alter schema then add the foreign key
+
+you have to under stand if any table has a foreign of another table
+both two table have to be on the same migration file
     
-    
+3) we make another migrations called publishers
