@@ -385,24 +385,54 @@ use Illuminate\Support\Facades\Schema;
 
 //
 
-Route::get('raw_test1',function(){
-	$authors = DB::table('authors')->select(DB::raw('*'))->get();
-	return Response()->json($authors);
+// Route::get('raw_test1',function(){
+// 	$authors = DB::table('authors')->select(DB::raw('*'))->get();
+// 	return Response()->json($authors);
+// });
+
+// //SELECT (you will fill the rest of the thing) FROM authors
+
+// Route::get('raw_test2',function(){
+// 	$authors = DB::table('authors')->select(DB::raw('first_name'))->get();
+// 	return Response()->json($authors);
+// });
+
+
+// Route::get('raw_test3',function(){
+// 	$authors = DB::table('authors')->select(DB::raw('first_name,last_name'))->get();
+// 	return Response()->json($authors);
+// });
+
+// // find the name
+
+
+// Route::get('create_table',function(){
+// 	Schema::create('dummy',function(Blueprint $table){
+// 		$table->increments('id');
+// 		$table->string('name',10);
+// 		$table->string('email');
+// 		$table->timestamps();
+// 	});
+// });
+
+
+// // now delete the table
+// Route::get('delete_table',function(){
+// 	// delete every row of the table
+// 	//DB::table('dummy')->delete();
+// 	//delete the whole table
+// 	DB::table('dummy')->truncate();
+// });
+
+
+// update the publishers table
+
+Route::get('update_table',function(){
+	DB::table('publishers')->where('id',1)->update(['name'=> 'dimik computing']);
 });
 
-//SELECT (you will fill the rest of the thing) FROM authors
+// update another table
 
-Route::get('raw_test2',function(){
-	$authors = DB::table('authors')->select(DB::raw('first_name'))->get();
-	return Response()->json($authors);
+Route::get('update_second_table',function(){
+	DB::table('publishers')->where('id',2)->update(['name'=>'worthy publication']);
 });
-
-
-Route::get('raw_test3',function(){
-	$authors = DB::table('authors')->select(DB::raw('first_name,last_name'))->get();
-	return Response()->json($authors);
-});
-
-// find the name
-
-
