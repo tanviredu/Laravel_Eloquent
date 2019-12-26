@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Schema;
 # use Illuminate\Database\Schema\Blueprint
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 
 // // this route will trigger the database 
@@ -237,10 +237,10 @@ Route::get('/', function () {
 // Route::get('create_book_elo',function(){
 // 	// this is also the get statement
 // 	$book = new  \App\Book;
-// 	$book->title = "title";
-// 	$book->pages_count = 200;
-// 	$book->price = 23.34;
-// 	$book->description = "this is the description";
+// 	$book->title = "title4";
+// 	$book->pages_count = 400;
+// 	$book->price = 30.34;
+// 	$book->description = "this is the description three four";
 // 	$book->author_id = 1;
 // 	$book->publisher_id = 1;
 // 	$book->save();
@@ -252,42 +252,108 @@ Route::get('/', function () {
 
 // we can post it with query builder
 
-Route::get('create_author_with_query',function(){
-	// declare an array and we store data into them
+// Route::get('create_author_with_query',function(){
+// 	// declare an array and we store data into them
 
-	$author = array();
-	$author['first_name'] = "Summer";
-	$author['last_name'] = "fin";
-	DB::table('authors')->insert($author);
-
-
-});
+// 	$author = array();
+// 	$author['first_name'] = "Summer";
+// 	$author['last_name'] = "fin";
+// 	DB::table('authors')->insert($author);
 
 
-// now we get the value with 
+// });
 
-Route::get('get_all_author',function(){
-	return \App\Author::all();
-});
 
-// can we get the same thing with query builder
-// same result but another method
+// // now we get the value with 
 
-Route::get('get_author',function(){
+// Route::get('get_all_author',function(){
+// 	return \App\Author::all();
+// });
+
+// // can we get the same thing with query builder
+// // same result but another method
+
+// Route::get('get_author',function(){
 	
-	$book =  DB::table('authors')->get();
-	return Response()->json($book);
+// 	$book =  DB::table('authors')->get();
+// 	return Response()->json($book);
+// });
+
+// // get a specfic book
+// Route::get('second',function(){
+// 	return \App\Author::find(2);
+// });
+
+// // same with the query builder
+
+// Route::get('second_query_build',function(){
+// 	$id = 2;
+// 	$second_author = DB::table('authors')->where('id',$id)->get();
+// 	return Response()->json($second_author);
+// });
+
+
+
+//query builder different query
+
+// find all
+Route::get('find_all',function(){
+	return DB::table('books')->get();
 });
 
-// get a specfic book
-Route::get('second',function(){
-	return \App\Author::find(2);
+// find the first one
+
+
+/**
+	* remember the get() method return a Collection
+	* but the first() method return an object
+**/
+
+
+Route::get('find_first',function(){
+	// you have to convert to json
+	$data = DB::table('books')->first();
+	return Response()->json($data);
 });
 
-// same with the query builder
-
-Route::get('second_query_build',function(){
-	$id = 2;
-	$second_author = DB::table('authors')->where('id',$id)->get();
-	return Response()->json($second_author);
+Route::get('find_second',function(){
+	$data =DB::table('books')->where('id',2)->first();
 });
+
+// find a single column
+
+Route::get('find_the_name',function(){
+	$name = DB::table('books')->where('id',2)->pluck('title');
+	return Response()->json($name);
+});
+
+// see if the column exists
+Route::get('find_multiple_column',function(){
+	$data = DB::table('books')->exists('title','price');
+	return Response()->json($data);
+});
+
+// Route join query
+Route::get('/get_all_info',function(){
+	$data = DB::table('books')->join('authors','books.author_id','authors.id')->select('books.*','authors.first_name','authors.last_name')->get();
+	return Response()->json($data);
+});
+
+
+// make  ajoin query to get the title and the author first name and the last name and the book price
+
+Route::get('/test1',function(){
+	$data = DB::table('books')->join('authors','books.author_id','authors.id')->select('books.title','books.price','authors.first_name','authors.last_name')->get();
+	return Response()->json($data);
+});
+
+
+// three table join
+// join with the books the author and the publisher
+Route::get('test2',function(){
+	$data = DB::table('books')->join('authors','books.author_id','authors.id')->join('publishers','books.publisher_id','publishers.id')->select('books.title','authors.first_name','publishers.name')->get();
+	return Response()->json($data);
+
+});
+
+
