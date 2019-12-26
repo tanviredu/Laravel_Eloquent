@@ -175,16 +175,79 @@ Route::get('/', function () {
 
 // adding route for CRUD operation
 
-Route::get('create_author',function(){
-	// get the author object
-	$author = new \App\Author;
-	$author->first_name = "Ornob";
-	$author->last_name = "Rahman";
-	$author->save();
-	// we addthe author value
+// Route::get('create_author',function(){
+// 	// get the author object
+// 	$author = new \App\Author;
+// 	$author->first_name = "Ornob";
+// 	$author->last_name = "Rahman";
+// 	$author->save();
+// 	// we addthe author value
 
 	
-});
+// });
+
+
+// this will be the Eloquent
+// Route::get('create_author',function(){
+// 	// create the author object
+// 	// firsttake the book object
+// 	$author = new \App\Author;
+// 	$author->first_name = "rahim";
+// 	$author->last_name = "Ahmed";
+// 	$author->save();
+
+// });
+
+
+
+// // and this will be the Queru builder
+
+// Route::get('create_author_query_builder',function(){
+// 	// make this thing with the query builder
+// 	$author = array();
+// 	$author['first_name'] = "Ahmead";
+// 	$author['last_name'] = "islam";
+// 	DB::table('authors')->insert($author);
+// 	echo "Data inserted";
+
+// });
+
+
+
+
+
+// create book enrty
+// query builder
+// Route::get('create_book',function(){
+
+// 	// this is the get statement
+// 	$book = array();
+// 	$book['title'] = "title2";
+// 	$book['pages_count'] = 400;
+// 	$book['price'] = 23.3;
+// 	$book['description'] = "this is the second desription";
+// 	$book['author_id']  = 2;
+// 	$book['publisher_id'] = 1;
+// 	// now insert the data
+// 	DB::table('books')->insert($book);
+
+// 	return DB::table('books')->get();
+// });
+
+// Route::get('create_book_elo',function(){
+// 	// this is also the get statement
+// 	$book = new  \App\Book;
+// 	$book->title = "title";
+// 	$book->pages_count = 200;
+// 	$book->price = 23.34;
+// 	$book->description = "this is the description";
+// 	$book->author_id = 1;
+// 	$book->publisher_id = 1;
+// 	$book->save();
+// });
+
+
+
 
 
 // we can post it with query builder
