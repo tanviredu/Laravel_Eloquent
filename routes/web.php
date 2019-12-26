@@ -297,9 +297,9 @@ use Illuminate\Support\Facades\Schema;
 //query builder different query
 
 // find all
-Route::get('find_all',function(){
-	return DB::table('books')->get();
-});
+// Route::get('find_all',function(){
+// 	return DB::table('books')->get();
+// });
 
 // find the first one
 
@@ -310,50 +310,70 @@ Route::get('find_all',function(){
 **/
 
 
-Route::get('find_first',function(){
-	// you have to convert to json
-	$data = DB::table('books')->first();
-	return Response()->json($data);
-});
+// Route::get('find_first',function(){
+// 	// you have to convert to json
+// 	$data = DB::table('books')->first();
+// 	return Response()->json($data);
+// });
 
-Route::get('find_second',function(){
-	$data =DB::table('books')->where('id',2)->first();
-});
+// Route::get('find_second',function(){
+// 	$data =DB::table('books')->where('id',2)->first();
+// });
 
-// find a single column
+// // find a single column
 
-Route::get('find_the_name',function(){
-	$name = DB::table('books')->where('id',2)->pluck('title');
-	return Response()->json($name);
-});
+// Route::get('find_the_name',function(){
+// 	$name = DB::table('books')->where('id',2)->pluck('title');
+// 	return Response()->json($name);
+// });
 
-// see if the column exists
-Route::get('find_multiple_column',function(){
-	$data = DB::table('books')->exists('title','price');
-	return Response()->json($data);
-});
+// // see if the column exists
+// Route::get('find_multiple_column',function(){
+// 	$data = DB::table('books')->exists('title','price');
+// 	return Response()->json($data);
+// });
 
-// Route join query
-Route::get('/get_all_info',function(){
-	$data = DB::table('books')->join('authors','books.author_id','authors.id')->select('books.*','authors.first_name','authors.last_name')->get();
-	return Response()->json($data);
-});
-
-
-// make  ajoin query to get the title and the author first name and the last name and the book price
-
-Route::get('/test1',function(){
-	$data = DB::table('books')->join('authors','books.author_id','authors.id')->select('books.title','books.price','authors.first_name','authors.last_name')->get();
-	return Response()->json($data);
-});
+// // Route join query
+// Route::get('/get_all_info',function(){
+// 	$data = DB::table('books')->join('authors','books.author_id','authors.id')->select('books.*','authors.first_name','authors.last_name')->get();
+// 	return Response()->json($data);
+// });
 
 
-// three table join
-// join with the books the author and the publisher
-Route::get('test2',function(){
-	$data = DB::table('books')->join('authors','books.author_id','authors.id')->join('publishers','books.publisher_id','publishers.id')->select('books.title','authors.first_name','publishers.name')->get();
-	return Response()->json($data);
+// // make  ajoin query to get the title and the author first name and the last name and the book price
 
-});
+// Route::get('/test1',function(){
+// 	$data = DB::table('books')->join('authors','books.author_id','authors.id')->select('books.title','books.price','authors.first_name','authors.last_name')->get();
+// 	return Response()->json($data);
+// });
 
 
+// // three table join
+// // join with the books the author and the publisher
+// Route::get('test2',function(){
+// 	$data = DB::table('books')->join('authors','books.author_id','authors.id')->join('publishers','books.publisher_id','publishers.id')->select('books.title','authors.first_name','publishers.name')->get();
+// 	return Response()->json($data);
+
+// });
+
+
+// making aggragate function
+// how many users exists
+
+
+// Route::get('all_authors',function(){
+// 	$users = DB::table('authors')->count();
+// 	return Response()->json($users);
+// });
+
+
+// Route::get('all_books',function(){
+// 	$users = DB::table('books')->count();
+// 	return Response()->json($users);
+// });
+
+
+// Route::get('all_publishers',function(){
+// 	$users = DB::table('publishers')->count();
+// 	return Response()->json($users);
+// });
