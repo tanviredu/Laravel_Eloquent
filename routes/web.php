@@ -436,3 +436,19 @@ Route::get('update_table',function(){
 Route::get('update_second_table',function(){
 	DB::table('publishers')->where('id',2)->update(['name'=>'worthy publication']);
 });
+
+
+
+Route::get('get_name',function(){
+	$first = DB::table('authors')->where('first_name','Tanvir')->get();
+	return Response()->json($first);
+});
+
+// we get two result lastname is tanvir
+// remember this is union not the intersection
+Route::get('get_name_with_union',function(){
+	$first = DB::table('authors')->where('first_name','Tanvir');
+	$second = DB::table('authors')->where('last_name','Rahman')->union($first)->get();
+	return Response()->json($second);
+
+});
