@@ -377,3 +377,32 @@ use Illuminate\Support\Facades\Schema;
 // 	$users = DB::table('publishers')->count();
 // 	return Response()->json($users);
 // });
+
+// we can add the RAW sql if necessary
+
+//find all the authors
+// find all
+
+//
+
+Route::get('raw_test1',function(){
+	$authors = DB::table('authors')->select(DB::raw('*'))->get();
+	return Response()->json($authors);
+});
+
+//SELECT (you will fill the rest of the thing) FROM authors
+
+Route::get('raw_test2',function(){
+	$authors = DB::table('authors')->select(DB::raw('first_name'))->get();
+	return Response()->json($authors);
+});
+
+
+Route::get('raw_test3',function(){
+	$authors = DB::table('authors')->select(DB::raw('first_name,last_name'))->get();
+	return Response()->json($authors);
+});
+
+// find the name
+
+
