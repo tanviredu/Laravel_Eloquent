@@ -1,1 +1,1 @@
-# for production make the server.php index.php
+# for production rename the server.php to index.php
